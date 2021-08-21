@@ -1,0 +1,96 @@
+{
+    "__default__" : {
+        "account" : "zhuang_lab",
+        "time" : "24:00:00",
+        "n" : 1,
+        "partition" : "zhuang",
+        "mem" : 10000,
+        "exclude" : "holyzhuang01",
+        "out" : "/n/home01/xingjiepan/merlin/job_stdoe/%j.stdout.txt",
+        "err" : "/n/home01/xingjiepan/merlin/job_stdoe/%j.stderr.txt"
+    },
+    "AdaptiveFilterBarcodes" : {
+        "mem" : 5000
+    },
+    "CleanCellBoundaries" : {
+        "mem" : 5000
+    },
+    "CombineCleanedBoundaries" : {
+        "mem" : 5000
+    },
+    "Decode" : {
+        "mem" : 5000
+    },
+    "DeconvolutionPreprocess" : {
+        "mem" : 2000
+    },
+    "ExportBarcodes" : {
+        "mem" : 20000
+    },
+    "ExportCellMetadata" : {
+        "mem" : 20000
+    },
+    "ExportPartitionedBarcodes" : {
+        "mem" : 15000
+    },
+    "ExportSumSignals" : {
+        "mem" : 15000
+    },
+    "FiducialCorrelationWarp" : {
+        "mem" : 2000
+    },
+    "FilterBarcodes" : {
+        "mem" : 15000
+    },
+    "GenerateAdaptiveThreshold" : {
+        "mem" : 50000
+    },  
+    "Optimize1" : {
+        "mem" : 5000
+    },
+    "Optimize2" : {
+        "mem" : 5000
+    },
+    "Optimize3" : {
+        "mem" : 5000
+    },
+    "Optimize4" : {
+        "mem" : 5000
+    },
+    "Optimize5" : {
+        "mem" : 5000
+    },
+    "Optimize6" : {
+        "mem" : 5000
+    },
+    "Optimize7" : {
+        "mem" : 5000
+    },
+    "Optimize8" : {
+        "mem" : 5000
+    },
+    "Optimize9" : {
+        "mem" : 5000
+    },
+    "Optimize10" : {
+        "mem" : 5000
+    },
+    "PartitionBarcodes" : {
+        "mem" : 5000
+    },
+    "PlotPerformance" : {
+        "mem" : 30000
+    },
+    "RefineCellDatabases" : {
+        "mem" : 5000
+    },
+    "SimpleGlobalAlignment" : {
+        "mem" : 3000
+    },
+    "SumSignals" : {
+        "mem" : 3000
+    },
+    "WatershedSegment" : {
+        "mem" : 5000
+    }
+}

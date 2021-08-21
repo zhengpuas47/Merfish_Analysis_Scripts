@@ -1,0 +1,5 @@
+{
+    "cluster": "sbatch --mem={cluster.mem} -A {cluster.account} -p {cluster.partition} -n {cluster.n}  -t {cluster.time} -o {cluster.out} -e {cluster.err} --exclude={cluster.exclude} ",
+    "cluster_config": "/n/home01/xingjiepan/merlin/merlin_parameters/snakemake/test_Aaron_210427_WB2_B5_B13_subset_cluster_config.json",
+    "nodes": 1000
+}
