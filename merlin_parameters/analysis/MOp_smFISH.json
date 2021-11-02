@@ -1,0 +1,149 @@
+{
+    "analysis_tasks": [
+        {
+            "task": "FiducialCorrelationWarp",
+            "module": "merlin.analysis.warp",
+            "parameters": {
+                "highpass_sigma": 10,
+                "write_fiducial_images": true,
+                "write_aligned_images": true
+            }
+        },
+        {
+            "task": "SimpleGlobalAlignment",
+            "module": "merlin.analysis.globalalign"
+        },
+        {
+            "task": "GenerateMosaic",
+            "module": "merlin.analysis.generatemosaic",
+            "parameters": {
+                "global_align_task": "SimpleGlobalAlignment",
+                "warp_task": "FiducialCorrelationWarp",
+                "data_channels": ["DAPI", "polyT", "Slc17a7", "Slc32a1", "SST"]
+            }
+        },
+        {
+            "task": "WatershedSegment",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "warp_task": "FiducialCorrelationWarp",
+                "global_align_task": "SimpleGlobalAlignment"
+            }
+        },
+        {
+            "task": "CleanCellBoundaries",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "segment_task": "WatershedSegment",
+                "global_align_task": "SimpleGlobalAlignment"
+            }
+        },
+        {
+            "task": "CombineCleanedBoundaries",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "cleaning_task": "CleanCellBoundaries"
+            }
+        },
+        {
+            "task": "RefineCellDatabases",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "segment_task": "WatershedSegment",
+                "combine_cleaning_task": "CombineCleanedBoundaries"
+            }
+        },
+        {
+            "task": "ExportCellMetadata",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "segment_task": "RefineCellDatabases"
+            }
+        },
+        {
+            "task": "SumSignal",
+            "analysis_name": "SumSignal1",
+            "module": "merlin.analysis.sequential",
+            "parameters": {
+                "warp_task": "FiducialCorrelationWarp",
+                "segment_task": "WatershedSegment",
+                "global_align_task": "SimpleGlobalAlignment",
+                "z_index":1,
+                "apply_highpass": "False",
+                "highpass_sigma":3
+            }
+        },
+        {
+            "task": "ExportSumSignals",
+            "analysis_name": "ExportSumSignals1",
+            "module": "merlin.analysis.sequential",
+            "parameters": {
+                "sequential_task": "SumSignal1"
+            }
+        },
+        {
+            "task": "SumSignal",
+            "analysis_name": "SumSignal4",
+            "module": "merlin.analysis.sequential",
+            "parameters": {
+                "warp_task": "FiducialCorrelationWarp",
+                "segment_task": "WatershedSegment",
+                "global_align_task": "SimpleGlobalAlignment",
+                "z_index":4,
+                "apply_highpass": "False",
+                "highpass_sigma":3
+            }
+        },
+        {
+            "task": "ExportSumSignals",
+            "analysis_name": "ExportSumSignals4",
+            "module": "merlin.analysis.sequential",
+            "parameters": {
+                "sequential_task": "SumSignal4"
+            }
+        },
+        {
+            "task": "SumSignal",
+            "analysis_name": "SumSignal7",
+            "module": "merlin.analysis.sequential",
+            "parameters": {
+                "warp_task": "FiducialCorrelationWarp",
+                "segment_task": "WatershedSegment",
+                "global_align_task": "SimpleGlobalAlignment",
+                "z_index":7,
+                "apply_highpass": "False",
+                "highpass_sigma":3
+            }
+        },
+        {
+            "task": "ExportSumSignals",
+            "analysis_name": "ExportSumSignals7",
+            "module": "merlin.analysis.sequential",
+            "parameters": {
+                "sequential_task": "SumSignal7"
+            }
+        },
+        {
+            "task": "SumSignal",
+            "analysis_name": "SumSignal10",
+            "module": "merlin.analysis.sequential",
+            "parameters": {
+                "warp_task": "FiducialCorrelationWarp",
+                "segment_task": "WatershedSegment",
+                "global_align_task": "SimpleGlobalAlignment",
+                "z_index":10,
+                "apply_highpass": "False",
+                "highpass_sigma":3
+            }
+        },
+        {
+            "task": "ExportSumSignals",
+            "analysis_name": "ExportSumSignals10",
+            "module": "merlin.analysis.sequential",
+            "parameters": {
+                "sequential_task": "SumSignal10"
+            }
+        }
+    ]
+
+}
