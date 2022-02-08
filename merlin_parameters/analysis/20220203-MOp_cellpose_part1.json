@@ -1,0 +1,86 @@
+{
+    "analysis_tasks": [
+        {
+            "task": "SimpleGlobalAlignment",
+            "module": "merlin.analysis.globalalign"
+        },
+        {
+            "task": "FiducialCorrelationWarp",
+            "module": "merlin.analysis.warp",
+            "parameters": {
+                "write_fiducial_images": true,
+                "write_aligned_images": true,
+                "highpass_sigma": 10
+            }
+        },
+        {
+            "task": "GenerateMosaic",
+            "module": "merlin.analysis.generatemosaic",
+            "analysis_name": "mosaic_bits",
+            "parameters": {
+                "global_align_task": "SimpleGlobalAlignment",
+                "warp_task": "FiducialCorrelationWarp",
+                "microns_per_pixel": 0.108,
+                "data_channels": ["bit1","bit2","bit3","bit4","bit5","bit6","bit7",
+                    "bit8","bit9","bit10","bit11","bit12","bit13","bit14","bit15","bit16","bit17","bit18","bit19","bit20","bit21","bit22","DAPI","polyT"],
+                "z_index": 5
+            }
+        },
+        {
+            "task": "DeconvolutionPreprocess",
+            "module": "merlin.analysis.preprocess",
+            "parameters": {
+                "warp_task": "FiducialCorrelationWarp",
+                "highpass_sigma": 3,
+                "decon_sigma": 2,
+                "decon_iterations": 20,
+                "decon_filter_size": 9,
+                "write_processed_images": true
+            }
+        },
+        {
+            "task": "MachineLearningSegment",
+            "module": "merlin.analysis.segment",
+            "analysis_name": "CellposeSegmentation",
+            "parameters": {
+                "warp_task": "FiducialCorrelationWarp",
+                "global_align_task": "SimpleGlobalAlignment",
+                "method": "cellpose",
+                "diameter": 50,
+                "compartment_channel_name": "DAPI", 
+                "flow_threshold": 0.5, 
+                "cellprob_threshold": 1
+            }
+        },
+        {
+            "task": "CleanCellBoundaries",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "segment_task": "CellposeSegmentation",
+                "global_align_task": "SimpleGlobalAlignment"
+            }
+        },
+        {
+            "task": "CombineCleanedBoundaries",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "cleaning_task": "CleanCellBoundaries"
+            }
+        },
+        {
+            "task": "RefineCellDatabases",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "segment_task": "CellposeSegmentation",
+                "combine_cleaning_task": "CombineCleanedBoundaries"
+            }
+        },
+        {
+            "task": "ExportCellMetadata",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "segment_task": "RefineCellDatabases"
+            }
+        }
+    ]
+}
