@@ -168,7 +168,7 @@
             "parameters": {
                 "global_align_task": "SimpleGlobalAlignment",
                 "warp_task": "FiducialCorrelationWarp",
-                "data_channels": ["DAPI", "polyT"]
+                "data_channels": ["bit1", "bit2", "DAPI", "polyT"]
             }
         },
         {
@@ -206,7 +206,7 @@
             "task": "CellPoseSegment",
             "module": "merlin.analysis.segment",
             "parameters": {
-                "use_gpu": true,
+                "use_gpu": false,
                 "warp_task": "FiducialCorrelationWarp",
                 "global_align_task": "SimpleGlobalAlignment"
             }
