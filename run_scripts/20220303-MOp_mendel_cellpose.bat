@@ -1,5 +1,5 @@
 call activate merlin_test
-merlin -a 20220208-MOp_cellpose.json ^
+merlin -a 20220303-MOp_cellpose.json ^
 -o 20220303-M1_22bits_adaptors.csv ^
 -c M1_codebook.csv ^
 -m storm6_microscope.json ^
