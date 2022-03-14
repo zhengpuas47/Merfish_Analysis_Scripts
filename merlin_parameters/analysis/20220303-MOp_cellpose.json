@@ -4,7 +4,7 @@
             "task": "FiducialCorrelationWarp",
             "module": "merlin.analysis.warp",
             "parameters": {
-                "highpass_sigma": 3,
+                "highpass_sigma": 2,
                 "write_fiducial_images": true,
                 "write_aligned_images": false
             }
@@ -168,7 +168,7 @@
             "parameters": {
                 "global_align_task": "SimpleGlobalAlignment",
                 "warp_task": "FiducialCorrelationWarp",
-                "data_channels": ["bit1", "bit2", "DAPI", "polyT"]
+                "data_channels": ["bit1", "bit2", "bit3", "bit4", "DAPI", "polyT"]
             }
         },
         {
