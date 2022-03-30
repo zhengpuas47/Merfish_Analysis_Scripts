@@ -23,7 +23,7 @@ merlin -a 20220312-MOp_cellpose.json \
 		-p 20220328_positions.txt \
 		-e /n/holyscratch01/zhuang_lab/Users/pzheng/MERFISH_Data \
 		-s /n/holyscratch01/zhuang_lab/Users/pzheng/Analysis_results \
-		-k MOp_cellpose_cluster_cellpose_config.json \
+		-k run_M1_cellpose.json \
 		-n 2 \
 		--no_report True \
 		20220328-M1_renamed
