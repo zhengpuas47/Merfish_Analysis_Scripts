@@ -1,0 +1,5 @@
+{
+    "cluster": "sbatch --mem={cluster.mem} -A {cluster.account} -p {cluster.partition} -n {cluster.n}  -t {cluster.time} -o {cluster.out} -e {cluster.err} --exclude={cluster.exclude} ",
+    "cluster_config": "/n/home13/pzheng/Softwares/MERFISH_analysis/Merfish_Analysis_Scripts/merlin_parameters/snakemake/MOp_cellpose_cluster_cellpose_config.json",
+    "nodes": 100
+}
