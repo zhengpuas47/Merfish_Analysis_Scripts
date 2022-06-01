@@ -184,7 +184,7 @@
             "task": "AdaptiveFilterBarcodes",
             "module": "merlin.analysis.filterbarcodes",
             "parameters": {
-                "misidentification_rate": 0.1,
+                "misidentification_rate": 0.05,
                 "decode_task": "Decode",
                 "adaptive_task": "GenerateAdaptiveThreshold"
             }
