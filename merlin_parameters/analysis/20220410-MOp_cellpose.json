@@ -4,8 +4,8 @@
             "task": "FiducialCorrelationWarp",
             "module": "merlin.analysis.warp",
             "parameters": {
-                "highpass_sigma": 2,
-                "write_fiducial_images": false,
+                "highpass_sigma": 5,
+                "write_fiducial_images": true,
                 "write_aligned_images": false
             }
         },

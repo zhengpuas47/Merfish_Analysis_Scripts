@@ -4,7 +4,7 @@ merlin -a 20220410-MOp_cellpose.json ^
 -c M1_codebook.csv ^
 -m storm65_microscope.json ^
 -p 20220415_positions_storm65.txt ^
--e I:\MERFISH_Data ^
+-e H:\MERFISH_Data2 ^
 -s I:\MERFISH_Analysis ^
 -n 66 ^
 --no_report True ^
