@@ -5,8 +5,8 @@
 #SBATCH -t 2-00:00:00
 #SBATCH --mem 16000
 #SBATCH --open-mode=append
-#SBATCH -o /n/holyscratch01/zhuang_lab/Users/pzheng/Analysis_results/Logs/job_stdoe_tmp/%j.stdout.txt
-#SBATCH -e /n/holyscratch01/zhuang_lab/Users/pzheng/Analysis_results/Logs/job_stdoe_tmp/%j.stdout.txt
+#SBATCH -o /n/holyscratch01/zhuang_lab/Users/pzheng/MERFISH_Analysis/Logs/Merlin_jobs/%j.stdout
+#SBATCH -e /n/holyscratch01/zhuang_lab/Users/pzheng/MERFISH_Analysis/Logs/Merlin_jobs/%j.stdout
 
 date +'Starting at %R.'
 
