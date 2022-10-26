@@ -23,7 +23,7 @@ merlin -a 20221025-hM1_cellpose.json \
 		-p 20221025_positions.txt \
 		-e /n/holyscratch01/zhuang_lab/Users/pzheng/MERFISH_Data \
 		-s /n/holyscratch01/zhuang_lab/Users/pzheng/MERFISH_Analysis \
-		-k run_M1_cellpose.json \
+		-k run_hM1_cellpose.json \
 		-n 2 \
 		--no_report True \
 		20221025-hM1_hM1
