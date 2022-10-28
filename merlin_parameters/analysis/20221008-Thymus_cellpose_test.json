@@ -1,0 +1,78 @@
+{
+    "analysis_tasks": [
+        {
+            "task": "FiducialCorrelationWarp",
+            "module": "merlin.analysis.warp",
+            "analysis_name": "FiducialCorrelationWarpSegmentation",
+            "parameters": {
+                "saturation_percentile": 99.999,
+                "highpass_sigma": 3,
+                "percentile_pixel_to_keep":99,
+                "edge_width_to_remove": 10,
+                "write_fiducial_images": true,
+                "write_aligned_images": true
+            }
+        },
+        {
+            "task": "SimpleGlobalAlignment",
+            "module": "merlin.analysis.globalalign"
+        },
+        {
+            "task": "CellPoseSegmentMembrane",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "warp_task": "FiducialCorrelationWarpSegmentation",
+                "global_align_task": "SimpleGlobalAlignment",
+                "nuclear_channel": "DAPI",
+                "membrane_channel": "CD4",
+                "use_gpu": false,
+                "diameter": 60,
+                "min_size": 200,
+                "dump_preprocessed_images": true,
+                "dump_segmented_masks": true
+            }
+        },
+        {
+            "task": "CleanCellBoundaries",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "segment_task": "CellPoseSegmentMembrane",
+                "global_align_task": "SimpleGlobalAlignment"
+            }
+        },
+        {
+            "task": "CombineCleanedBoundaries",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "cleaning_task": "CleanCellBoundaries"
+            }
+        },
+        {
+            "task": "RefineCellDatabases",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "segment_task": "CellPoseSegmentMembrane",
+                "combine_cleaning_task": "CombineCleanedBoundaries"
+            }
+        },
+        {
+            "task": "ExportCellMetadata",
+            "module": "merlin.analysis.segment",
+            "parameters": {
+                "segment_task": "RefineCellDatabases"
+            }
+        },
+        {
+            "task": "GenerateMosaic",
+            "module": "merlin.analysis.generatemosaic",
+            "parameters": {
+                "global_align_task": "SimpleGlobalAlignment",
+                "warp_task": "FiducialCorrelationWarpSegmentation",
+                "microns_per_pixel": 1,
+                "separate_files": false,
+                "z_index": "maximum_projection"
+            }
+        }
+    ]
+
+}
